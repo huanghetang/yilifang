@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.search.mapper.IndexMapper" >
+
+<select id="selectAllItem" resultType="cn.e3mal.common.Item">
+		SELECT
+		a.id,
+		a.title,
+		a.sell_point,
+		a.price,
+		a.image,
+		b.name
+	FROM
+		tb_item a
+	LEFT JOIN tb_item_cat b ON a.cid = b.id
+	where a.status = 1
+</select>
+
+
+<!-- Item selectItemById(String id); -->
+<select id="selectItemById" resultType="cn.e3mal.common.Item">
+	SELECT
+		a.id,
+		a.title,
+		a.sell_point,
+		a.price,
+		a.image,
+		b.name
+	FROM
+		tb_item a
+	LEFT JOIN tb_item_cat b ON a.cid = b.id
+	where a.status = 1
+	and a.id = #{id}
+</select>
+  
+</mapper>
